@@ -1,0 +1,25 @@
+/* Home.css */
+
+/* You can remove this file if you are only using Tailwind.
+   But if you have additional custom styles, here's a minimal version.
+*/
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Optional: smoother animation for background floating cards */
+.floating-card {
+  animation: floatCard 6s ease-in-out infinite;
+}
+
+@keyframes floatCard {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(3deg);
+  }
+}

@@ -1,0 +1,9 @@
+.text-gradient {
+  background: linear-gradient(to right, #a855f7, #ec4899, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+input:focus {
+  outline: none;
+}
