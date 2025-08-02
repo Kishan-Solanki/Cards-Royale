@@ -1,9 +1,10 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 import MindiGameTable from './MindiGameTable';
 
-export default function TeenPattiPage() {
+function GameTableContent() {
   const searchParams = useSearchParams();
 
   const userId = searchParams.get('id');
@@ -20,5 +21,13 @@ export default function TeenPattiPage() {
       username={username}
       profileImageURL={profileImageURL}
     />
+  );
+}
+
+export default function TeenPattiPage() {
+  return (
+    <Suspense fallback={<div className="text-white text-center mt-10">Loading...</div>}>
+      <GameTableContent />
+    </Suspense>
   );
 }
