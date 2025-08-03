@@ -1,5 +1,6 @@
 import { cookies } from 'next/headers';
 import ProfileClient from './ProfileClient';
+import { verifyJwtToken } from '@/lib/jwt';
 
 export default async function ProfilePage() {
   const cookieStore = await cookies();
