@@ -4,7 +4,7 @@ import React, { useState, useEffect, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Eye, EyeOff } from 'lucide-react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams, useRouter, redirect } from 'next/navigation';
 import axios from 'axios';
 import { toast } from 'sonner';
 
