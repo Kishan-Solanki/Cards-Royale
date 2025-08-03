@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Eye, EyeOff } from 'lucide-react';
@@ -8,7 +8,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import axios from 'axios';
 import { toast } from 'sonner';
 
-export default function LoginPage() {
+function LoginPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -235,5 +235,17 @@ export default function LoginPage() {
         )}
       </motion.div>
     </main>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <main className="relative min-h-screen flex items-center justify-center bg-black/90 text-white px-4">
+        <div className="text-white text-center">Loading...</div>
+      </main>
+    }>
+      <LoginPageContent />
+    </Suspense>
   );
 }

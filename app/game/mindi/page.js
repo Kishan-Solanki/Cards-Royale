@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,7 +9,7 @@ import { useSearchParams } from 'next/navigation';
 
 const suits = ['hakam', 'chokat', 'dil', 'fuli'];
 
-export default function MindiPage() {
+function MindiPageContent() {
   const [cards, setCards] = useState([]);
   const searchParams = useSearchParams();
 
@@ -98,7 +98,7 @@ export default function MindiPage() {
         </h1>
 
         <p className="text-lg text-gray-400 mb-6">
-          Also known as “Dehla Pakad”, a strategic trick-taking game played in teams.
+          Also known as "Dehla Pakad", a strategic trick-taking game played in teams.
         </p>
 
         <div className="mt-6 flex justify-center gap-4 flex-wrap">
@@ -140,5 +140,17 @@ export default function MindiPage() {
         className="absolute bottom-0 w-full h-32 bg-gradient-to-t from-pink-600 to-transparent"
       />
     </div>
+  );
+}
+
+export default function MindiPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-br from-[#0e0e0e] via-[#141414] to-[#0e0e0e] text-white flex flex-col items-center justify-center px-6">
+        <div className="text-white text-center">Loading...</div>
+      </div>
+    }>
+      <MindiPageContent />
+    </Suspense>
   );
 }

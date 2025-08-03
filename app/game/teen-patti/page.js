@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,7 +9,7 @@ import { useSearchParams } from 'next/navigation';
 import {Users} from 'lucide-react';
 const suits = ['hakam', 'chokat', 'dil', 'fuli'];
 
-export default function TeenPattiPage() {
+function TeenPattiPageContent() {
   const [cards, setCards] = useState([]);
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
@@ -156,5 +156,17 @@ export default function TeenPattiPage() {
         className="absolute bottom-0 w-full h-32 bg-gradient-to-t from-yellow-600 to-transparent"
       />
     </div>
+  );
+}
+
+export default function TeenPattiPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-br from-[#0e0e0e] via-[#141414] to-[#0e0e0e] text-white flex flex-col items-center justify-center px-6">
+        <div className="text-white text-center">Loading...</div>
+      </div>
+    }>
+      <TeenPattiPageContent />
+    </Suspense>
   );
 }

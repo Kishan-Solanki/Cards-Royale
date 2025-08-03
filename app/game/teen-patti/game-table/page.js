@@ -1,9 +1,10 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 import TeenPattiGameTable from './TeenPattiGameTable';
 
-export default function TeenPattiPage() {
+function TeenPattiPageContent() {
   const searchParams = useSearchParams();
 
   const userId = searchParams.get('id');
@@ -23,5 +24,13 @@ export default function TeenPattiPage() {
       isPrivate={isPrivate}
       roomIdd={roomId}
     />
+  );
+}
+
+export default function TeenPattiPage() {
+  return (
+    <Suspense fallback={<div className="text-black text-center mt-10">Loading...</div>}>
+      <TeenPattiPageContent />
+    </Suspense>
   );
 }
