@@ -63,7 +63,7 @@ export async function sendForgotPasswordEmail(email, username, resetLink) {
       throw new Error(`EmailJS error: ${errorData}`);
     }
 
-    return { success: true, message: 'Reset link email sent successfully' };
+    return { success: false, message: 'Error sending mail' };
   } catch (error) {
     console.error('Error sending forgot password email:', error);
     return { success: false, message: 'Failed to send reset link email' };
